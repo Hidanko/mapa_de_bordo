@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("./mainWindow/TelaPrincipal.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("./view/TelaPrincipal.fxml"));
 		primaryStage.setTitle("Mapa de Bordo");
 		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
