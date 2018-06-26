@@ -1,2 +1,2 @@
-# mapa_de_bordo_interface
-Parte do projeto final de Banco de Dados 1
+# Projeto de Banco de dados 1
+Interface do projeto de Mapa de Bordo
