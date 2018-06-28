@@ -32,7 +32,14 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.1-901-1.jdbc4</version>
 		</dependency>
-<!-- 		 Se precisar adicionar alguma biblioteca, buscar a dependencia no site do Maven e adicionar na proxima linha -->
-<!-- 		 Igual o exemplo a cima -->
+		<dependency>
+			<groupId>net.sourceforge.dynamicreports</groupId>
+			<artifactId>dynamicreports-core</artifactId>
+			<version>5.1.0</version>
+		</dependency>
+
+		<!-- Se precisar adicionar alguma biblioteca, buscar a dependencia no site 
+			do Maven e adicionar na proxima linha -->
+		<!-- Igual o exemplo a cima -->
 	</dependencies>
 </project>
