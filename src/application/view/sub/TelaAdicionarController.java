@@ -73,6 +73,8 @@ public class TelaAdicionarController {
     	LocalDate dataSaida = datePickerChegada.getValue();
     	LocalDate dataChegada = datePickerChegada.getValue();
     	
+    	// gerar objeto e fazer testes de validação
+    	
     	
     }
 	
@@ -97,6 +99,10 @@ public class TelaAdicionarController {
 
     @FXML
     void adicionarEspecie(ActionEvent event) {
-
+    	// validar valores
+    	// adicionar especie selecionada ao listaEspecies
+    	//adicionar especie selecionada a tabela
+    	// (caso já exista, adicionar valor ao anterior)
+    	// limpar campos
     }
 }
