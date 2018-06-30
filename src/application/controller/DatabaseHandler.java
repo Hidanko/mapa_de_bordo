@@ -3,6 +3,9 @@ package application.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import application.controller.relatorio.model.DadosRelatorioDois;
+import application.controller.relatorio.model.DadosRelatorioTres;
+import application.controller.relatorio.model.DadosRelatorioUm;
 import application.model.EmbarcacaoView;
 import application.model.banco.Especie;
 import application.model.banco.Porto;
@@ -45,5 +48,17 @@ public class DatabaseHandler {
 	public boolean adicionarEmbarcacao(Viagem dados) {
 		
 		return true;
+	}
+	
+	public List<DadosRelatorioUm> gerarRelatorioUm() {
+		return new ArrayList<DadosRelatorioUm>();
+	}
+	
+	public List<DadosRelatorioDois> gerarRelatorioDois() {
+		return new ArrayList<DadosRelatorioDois>();
+	}
+	
+	public List<DadosRelatorioTres> gerarRelatorioTres() {
+		return new ArrayList<DadosRelatorioTres>();
 	}
 }

@@ -29,6 +29,9 @@
                <children>
                   <Button fx:id="buttonAdicionar" layoutX="504.0" layoutY="20.0" mnemonicParsing="false" onAction="#adicionar" text="Adicionar" />
                   <Text fx:id="mensagem" layoutX="32.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="438.13671875" />
+                  <Button fx:id="buttonRelatorioUm" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#gerarRelatorioUm" text="Relatorio 01" />
+                  <Button fx:id="buttonRelatorioDois" layoutX="111.0" layoutY="20.0" mnemonicParsing="false" onAction="#gerarRelatorioDois" text="Relatorio 02" />
+                  <Button fx:id="buttonRelatorioTres" layoutX="205.0" layoutY="20.0" mnemonicParsing="false" onAction="#gerarRelatorioTres" text="Relatorio 03" />
                </children>
             </Pane>
          </children>

@@ -48,6 +48,21 @@ public class TelaPrincipalController {
 	private Button buttonAdicionar;
 	@FXML
 	private Text mensagem;
+	
+    @FXML
+    void gerarRelatorioUm(ActionEvent event) {
+
+    }
+
+    @FXML
+    void gerarRelatorioDois(ActionEvent event) {
+
+    }
+
+    @FXML
+    void gerarRelatorioTres(ActionEvent event) {
+
+    }
 
 	@FXML
 	void adicionar(ActionEvent event) {
@@ -68,10 +83,10 @@ public class TelaPrincipalController {
 
 	@FXML
 	void initialize() {
-		column1.setCellValueFactory(new PropertyValueFactory("Embarcação"));
-		column2.setCellValueFactory(new PropertyValueFactory("Data de Saída"));
-		column3.setCellValueFactory(new PropertyValueFactory("Data de Chegada"));
-		column4.setCellValueFactory(new PropertyValueFactory("Total Capturado"));
+		column1.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("Embarcação"));
+		column2.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("Data de Saída"));
+		column3.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("Data de Chegada"));
+		column4.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("Total Capturado"));
 
 		if (atualizarTabela()) {
 			mensagem.setText("Serviço online");
@@ -94,7 +109,7 @@ public class TelaPrincipalController {
 
 		ObservableList<EmbarcacaoView> data = FXCollections.observableArrayList(embarcacoes);
 
-		tableMain.getItems().addAll(data);
+		tableMain.getItems().setAll(data);
 
 		return true;
 	}

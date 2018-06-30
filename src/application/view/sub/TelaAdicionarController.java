@@ -1,6 +1,9 @@
 package application.view.sub;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -8,9 +11,16 @@ import application.controller.DatabaseHandler;
 import application.model.banco.Embarcacao;
 import application.model.banco.Especie;
 import application.model.banco.Porto;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 public class TelaAdicionarController {
 
@@ -30,17 +40,63 @@ public class TelaAdicionarController {
 	private ChoiceBox<Embarcacao> choseEmbarcacao;
 
 	@FXML
-	private ChoiceBox<Embarcacao> choseSaida;
+	private ChoiceBox<Porto> choseSaida;
 
 	@FXML
-	private ChoiceBox<Embarcacao> choseChegada;
+	private ChoiceBox<Porto> choseChegada;
 
+    @FXML
+    private Text mensagem;
+
+    @FXML
+    private TableColumn<Especie, Float> columnQuantidade;
+
+    @FXML
+    private TableColumn<Especie, String> columnEspecie;
+
+    @FXML
+    private Button buttonAdicionar;
+
+    @FXML
+    private ChoiceBox<Especie> choseEspecie;
+
+    @FXML
+    private TextField textQuantidade;
+    
+    @FXML
+    void adicionar(ActionEvent event) {
+    	mensagem.setText("");
+
+    	Embarcacao embarcacao = choseEmbarcacao.getSelectionModel().getSelectedItem();
+    	Porto saida = choseSaida.getSelectionModel().getSelectedItem();
+    	Porto chegada = choseChegada.getSelectionModel().getSelectedItem();
+    	LocalDate dataSaida = datePickerChegada.getValue();
+    	LocalDate dataChegada = datePickerChegada.getValue();
+    	
+    	
+    }
+	
 	@FXML
 	void initialize() {
+		
+		columnEspecie.setCellValueFactory(new PropertyValueFactory<Especie, String>("Especie"));
+		columnQuantidade.setCellValueFactory(new PropertyValueFactory<Especie, Float>("Quantidade"));
+
+		
+		List<Especie> listaEspecies = new ArrayList<Especie>();
+		
 		DatabaseHandler dbh = new DatabaseHandler();
 		List<Porto> portos = dbh.requisitarPortos();
 		List<Especie> especies = dbh.requisitarEspecies();
-		
-		
+
+		choseSaida.getItems().setAll((Collection<? extends Porto>) FXCollections.observableArrayList(portos));
+		choseChegada.getItems().setAll((Collection<? extends Porto>) FXCollections.observableArrayList(portos));
+		choseEspecie.getItems().setAll((Especie) FXCollections.observableArrayList(especies));
 	}
+	
+
+    @FXML
+    void adicionarEspecie(ActionEvent event) {
+
+    }
 }
