@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.controller.DatabaseHandler;
+import application.model.EspecieView;
 import application.model.banco.Embarcacao;
 import application.model.banco.Especie;
 import application.model.banco.Porto;
@@ -19,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
@@ -65,7 +67,11 @@ public class TelaAdicionarController {
 	@FXML
 	private TextField textQuantidade;
 
+	@FXML
+	private TableView<EspecieView> tabela;
+
 	List<Especie> listaEspecies;
+
 	@FXML
 	void adicionar(ActionEvent event) {
 		mensagem.setText("");
@@ -90,12 +96,11 @@ public class TelaAdicionarController {
 			mensagem.setText("Selecione uma embarcação");
 		} else {
 			DatabaseHandler dbh = new DatabaseHandler();
-			
-			
+
 			if (dbh.adicionarEmbarcacao(viagem)) {
-			
-			Stage stage = (Stage) buttonAdicionar.getScene().getWindow();
-			stage.close();
+
+				Stage stage = (Stage) buttonAdicionar.getScene().getWindow();
+				stage.close();
 			} else {
 				mensagem.setText("Erro interno");
 			}
@@ -116,25 +121,29 @@ public class TelaAdicionarController {
 
 		choseSaida.getItems().setAll((Collection<? extends Porto>) FXCollections.observableArrayList(portos));
 		choseChegada.getItems().setAll((Collection<? extends Porto>) FXCollections.observableArrayList(portos));
-		choseEspecie.getItems().setAll((Especie) FXCollections.observableArrayList(especies));
+		choseEspecie.getItems().setAll(FXCollections.observableArrayList(especies));
 	}
 
 	@FXML
 	void adicionarEspecie(ActionEvent event) {
 		mensagem.setText("");
-		
+
 		Especie especie = choseEspecie.getSelectionModel().getSelectedItem();
 		String quantidadeString = textQuantidade.getText();
-		
+
 		if (especie == null) {
 			mensagem.setText("Selecione uma espécie da lista");
 		} else if (quantidadeString == null) {
 			mensagem.setText("Digite uma quantidade válida");
-		}
+		} else {
+
+		tabela.getItems().add(new EspecieView(especie.getNome(), Integer.valueOf(quantidadeString)));
 		
-		// adicionar especie selecionada ao listaEspecies
-		// adicionar especie selecionada a tabela
+		especie.setPeso(Integer.valueOf(quantidadeString));
+		listaEspecies.add(especie);
+		
+		
 		// (caso já exista, adicionar valor ao anterior)
 		// limpar campos
-	}
+	}}
 }
