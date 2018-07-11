@@ -82,7 +82,7 @@ public class TelaAdicionarController {
 		LocalDate dataSaida = datePickerChegada.getValue();
 		LocalDate dataChegada = datePickerChegada.getValue();
 
-		Viagem viagem = new Viagem(embarcacao, chegada, saida, listaEspecies);
+		Viagem viagem = new Viagem(embarcacao, chegada, saida, listaEspecies, dataSaida, dataChegada);
 
 		if (chegada == null) {
 			mensagem.setText("Porto de chegada não definido");
@@ -97,7 +97,7 @@ public class TelaAdicionarController {
 		} else {
 			DatabaseHandler dbh = new DatabaseHandler();
 
-			if (dbh.adicionarEmbarcacao(viagem)) {
+			if (dbh.adicionarViagem(viagem)) {
 
 				Stage stage = (Stage) buttonAdicionar.getScene().getWindow();
 				stage.close();
@@ -110,18 +110,22 @@ public class TelaAdicionarController {
 	@FXML
 	void initialize() {
 
-		columnEspecie.setCellValueFactory(new PropertyValueFactory<Especie, String>("Especie"));
-		columnQuantidade.setCellValueFactory(new PropertyValueFactory<Especie, Float>("Quantidade"));
-
+		columnEspecie.setCellValueFactory(new PropertyValueFactory<Especie, String>("nome"));
+		columnQuantidade.setCellValueFactory(new PropertyValueFactory<Especie, Float>("quantidade"));
+                
 		listaEspecies = new ArrayList<Especie>();
 
 		DatabaseHandler dbh = new DatabaseHandler();
 		List<Porto> portos = dbh.requisitarPortos();
 		List<Especie> especies = dbh.requisitarEspecies();
-
-		choseSaida.getItems().setAll((Collection<? extends Porto>) FXCollections.observableArrayList(portos));
-		choseChegada.getItems().setAll((Collection<? extends Porto>) FXCollections.observableArrayList(portos));
+                List<Embarcacao> embarcacoes = dbh.requisitarEmbarcacao();
+                
+                
+                
+		choseSaida.getItems().setAll( FXCollections.observableArrayList(portos));
+		choseChegada.getItems().setAll( FXCollections.observableArrayList(portos));
 		choseEspecie.getItems().setAll(FXCollections.observableArrayList(especies));
+                choseEmbarcacao.getItems().setAll(FXCollections.observableArrayList(embarcacoes));
 	}
 
 	@FXML

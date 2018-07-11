@@ -20,6 +20,10 @@ public class Embarcacao {
 		this.nome = nome;
 		this.id = id;
 	}
-	
+	 
+        @Override
+        public String toString(){
+            return nome;
+        }
 	
 }

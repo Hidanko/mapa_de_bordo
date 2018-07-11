@@ -82,11 +82,11 @@ public class TelaPrincipalController {
 	}
 
 	@FXML
-	void initialize() {
-		column1.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("Embarcação"));
-		column2.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("Data de Saída"));
-		column3.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("Data de Chegada"));
-		column4.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("Total Capturado"));
+	void initialize() throws ClassNotFoundException {
+		column1.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("nome"));
+		column2.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("dataSaida"));
+		column3.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("dataChegada"));
+		column4.setCellValueFactory(new PropertyValueFactory<EmbarcacaoView, String>("carregamento"));
 
 		if (atualizarTabela()) {
 			mensagem.setText("Serviço online");
@@ -103,8 +103,9 @@ public class TelaPrincipalController {
 	 * Método para ser invocado sempre que for atualizar a tabela Retornar FALSE
 	 * caso ocorra algum erro
 	 */
-	private boolean atualizarTabela() {
-		DatabaseHandler dbh = new DatabaseHandler();
+	private boolean atualizarTabela() throws ClassNotFoundException {
+		DatabaseHandler dbh = DatabaseHandler.getInstance();
+                
 		List<EmbarcacaoView> embarcacoes = dbh.requisitarEmbarcacoesView();
 
 		ObservableList<EmbarcacaoView> data = FXCollections.observableArrayList(embarcacoes);

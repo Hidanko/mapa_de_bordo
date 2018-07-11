@@ -27,5 +27,8 @@ public class Porto {
 		this.dia = dia;
 	}
 	
-	
+	@Override
+        public String toString(){
+            return nome;
+        }
 }
